@@ -8,8 +8,8 @@
 .footer
 {
     width: 100%;
-    padding: 30px 40px;
-    background: #f6f6f6;
+    padding: 0px 10px;
+    background: #232323;
 }
 .footer .container
 {
@@ -52,7 +52,7 @@
 }
 .footer .container .right_box
 {
-    padding: 10px 20px;
+    padding: 10px 10px;
     width: 69%;
 }
 .footer .container .right_box .header
@@ -60,13 +60,14 @@
     max-width: 100%;
     align-items: center;
 }
-.footer .container .right_box .header img
-{
-    margin-left: 40%;
-}
+/*.footer .container .right_box .header img*/
+/*{*/
+/*    margin-left: 40%;*/
+/*}*/
 .footer .container .right_box .header p
 {
     margin-top: 15px;
+    margin-left: 300px;
     font-size: 14px;
     text-align: center;
     font-weight: 600;
@@ -87,7 +88,7 @@
 .footer .container .right_box .bottom .box h3
 {
     text-transform: uppercase;
-    color: #232323;
+    color: #8a8a8a;
     font-size: 14px;
     letter-spacing: 1px;
 }

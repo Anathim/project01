@@ -33,7 +33,7 @@ const Shop = ({shop, Filter, allcatefilter, addtocart}) => {
                                 <div className='info'>
                                     <h4># {detail.cat}</h4>
                                     <h2>{detail.Name}</h2>
-                                    <p>A Searchcreen Everyone Will Love: Whether your family is streaming or video chatting with friends tablet A8...</p>
+                                    <p>piano description: play your favourite songs, any time they echo in your mind</p>
                                     <h3>${detail.price}</h3>
                                     <button onClick={() => addtocart (detail)}>Add To Cart</button>
                                 </div>
@@ -43,24 +43,23 @@ const Shop = ({shop, Filter, allcatefilter, addtocart}) => {
                     : null
             }
             <div className='shop'>
-                <h2># shop</h2>
+                <h2>shop</h2>
                 <p>Home . shop</p>
                 <div className='container'>
                     <div className='left_box'>
                         <div className='category'>
-                            <div className='header'>
-                                <h3>all categories</h3>
-                            </div>
+                            {/*<div className='header'>*/}
+                            {/*    <h3></h3>*/}
+                            {/*</div>*/}
                             <div className='box'>
                                 <ul>
-                                    <li onClick={() => allcatefilter ()}># All</li>
-                                    <li onClick={() => Filter ("tv")}># tv</li>
-                                    <li onClick={() => Filter ("laptop")}># laptop</li>
-                                    <li onClick={() => Filter ("watch")}># watch</li>
-                                    <li onClick={() => Filter ("speaker")}># speaker</li>
-                                    <li onClick={() => Filter ("electronics")}># electronics</li>
-                                    <li onClick={() => Filter ("headphone")}># headphone</li>
-                                    <li onClick={() => Filter ("phone")}># phone</li>
+                                    <li onClick={() => allcatefilter ()}>All</li>
+                                    <li onClick={() => Filter ("piano")}>PIANO</li>
+                                    <li onClick={() => Filter ("guitar")}>GUITAR</li>
+                                    <li onClick={() => Filter ("drum")}>DRUM</li>
+                                    <li onClick={() => Filter ("microphone")}>MICROPHONE</li>
+                                    <li onClick={() => Filter ("trumpet")}>TRUMPET</li>
+                                    <li onClick={() => Filter ("DJ")}>DJ</li>
                                 </ul>
                             </div>
                         </div>
@@ -94,7 +93,7 @@ const Shop = ({shop, Filter, allcatefilter, addtocart}) => {
                                                     </div>
                                                     <div className='detail'>
                                                         <h3>{curElm.Name}</h3>
-                                                        <p>$ {curElm.price}</p>
+                                                        <p>R {curElm.price}</p>
                                                         <button onClick={() => addtocart (curElm)}>Add To Cart</button>
                                                     </div>
                                                 </div>
@@ -110,4 +109,5 @@ const Shop = ({shop, Filter, allcatefilter, addtocart}) => {
         </>
     )
 }
+
 export default Shop

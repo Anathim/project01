@@ -36,8 +36,8 @@
     margin-left: 45%;
     padding: 10px 30px;
     margin-top: 10px;
-    background: #fed700;
-    color: #cd176c;
+    background: darkred;
+    color: green;
     border: none;
     outline: none;
     border: 1px solid #fed700;
@@ -107,7 +107,7 @@
     color: #232323;
     border: none;
     outline: none;
-    background: #fed700;
+    background: cornflowerblue;
     font-weight: 600;
     height: 40px;
     font-size: 16px;
@@ -121,8 +121,8 @@
     background: none;
     border: none;
     outline: none;
-    border: 2px solid #fed700;
-    color: #cd1e76;
+    border: 2px solid ;
+    color: black;
     font-size: 14px;
     font-weight: 600;
     width: 100px;
@@ -135,7 +135,7 @@
 .cart .container .box .detail .icon li
 {
     list-style: none;
-    background: #cd1e76;
+    background: darkred;
     padding: 10px 10px;
     color: #fff;
     font-size: 14px;
@@ -149,7 +149,7 @@
 .cart .bottom .Total h4
 {
     font-size: 22px;
-    color: #cd176c;
+    color: green;
     text-transform: uppercase;
     font-weight: 600;
 }
@@ -159,7 +159,7 @@
     border: none;
     outline: none;
     background: none;
-    background: #fed700;
+    background: cornflowerblue;
     color: #232323;
     font-weight: 600;
     font-size: 16px;

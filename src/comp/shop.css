@@ -38,19 +38,19 @@
 }
 .shop .container .left_box .category
 {
-    border: 3px solid #f6f6f6;
-    width: 250px;
+    border: 3px solid black;
+    width: 180px;
 }
 .shop .container .left_box .category .header
 {
     max-width: 100%;
     padding: 10px 20px;
-    background: #f6f6f6;
+    background: black;
 }
 .shop .container .left_box .category .header h3
 {
     font-size: 16px;
-    color: #232323;
+    color: white;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -167,7 +167,7 @@
 .shop .container .right_box .product_box .product_container .box .img_box .icon li:hover
 {
     color:#fff;
-    background: #cd1e76;
+    background: blueviolet;
 }
 .shop .container .right_box .product_box .product_container .box:hover .img_box .icon
 {
@@ -190,7 +190,7 @@
 {
     margin-top: 5px;
     text-align: center;
-    color: #cd1e76;
+    color: darkred;
     font-size: 16px;
 }
 .shop .container .right_box .product_box .product_container .box .detail button
@@ -200,15 +200,15 @@
     padding: 10px 20px;
     border: none;
     outline: none;
-    color: #232323;
-    background: #fed700;
+    color: black;
+    background: cornflowerblue;
     font-weight: 600;
     cursor: pointer;
     transition: 0.5s;
 }
 .shop .container .right_box .product_box .product_container .box .detail button:hover
 {
-    color: #fed700;
+    color: cornflowerblue;
     background: #232323;
 }
 .product_detail
