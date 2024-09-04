@@ -81,7 +81,7 @@ const Nav = ({search, setSearch, searchproduct}) => {
                             <li><Link to='/shop' className='link'>Shop</Link></li>
                             <li><Link to='/cart' className='link'>Cart</Link></li>
                             <li><Link to='/about' className='link'>About</Link></li>
-                            <li><Link to='/contact' className='link'>Contact</Link></li>
+                            {/*<li><Link to='/contact' className='link'>Careers</Link></li>*/}
                         </ul>
                     </div>
                     {/*<div className='offer'>*/}
