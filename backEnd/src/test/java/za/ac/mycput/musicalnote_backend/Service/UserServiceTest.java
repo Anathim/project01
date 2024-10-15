@@ -121,7 +121,7 @@ public class UserServiceTest {
         when(userRepository.findByUsername(testUser.getUsername())).thenReturn(Optional.of(testUser));
 
         // Act
-        User result = userService.findExistingusername(testUser.getUsername());
+        User result = userService.findExistingUsername(testUser.getUsername());
 
         // Assert
         assertNotNull(result);
@@ -135,7 +135,7 @@ public class UserServiceTest {
 
         // Act & Assert
         NoSuchElementException thrown = assertThrows(NoSuchElementException.class, () -> {
-            userService.findExistingusername(testUser.getUsername());
+            userService.findExistingUsername(testUser.getUsername());
         });
         assertEquals("username does not exist", thrown.getMessage());
     }

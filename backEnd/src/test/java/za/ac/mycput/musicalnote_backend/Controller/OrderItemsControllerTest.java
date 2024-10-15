@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import za.ac.mycput.musicalnote_backend.Domain.Order;
 import za.ac.mycput.musicalnote_backend.Domain.OrderItems;
 import za.ac.mycput.musicalnote_backend.Domain.Product;
 import za.ac.mycput.musicalnote_backend.Service.OrderItemsService;
@@ -56,7 +57,7 @@ public class OrderItemsControllerTest {
 
         mockMvc.perform(post("/api/order-items")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"orderItems_id\":1,\"product\":{\"productId\":1,\"name\":\"Test Product\",\"price\":100.0},\"quantity\":5,\"price\":200.0}"))
+                        .content("{\"orderItems_id\":1,\"product\":{\"productId\":1,\"name\":\"Test Product\",\"price\":100.0},\"quantity\":5}"))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.orderItems_id").value(1L))
                 .andExpect(jsonPath("$.product.name").value("Test Product"))
@@ -83,11 +84,13 @@ public class OrderItemsControllerTest {
     }
 
     @Test
-    public void testGetAllOrderItemsByOrderId_Success() throws Exception {
+    public void testGetAllOrderItemsByOrder_Success() throws Exception {
         List<OrderItems> orderItemsList = List.of(testOrderItem);
-        when(orderItemsService.getAllOrderItemsByOrderId(1L)).thenReturn(orderItemsList);
+        Order testOrder = new Order(); // Create a mock Order object
+        testOrder.setOrderId(1L); // Set the order ID
+        when(orderItemsService.getAllOrderItemsByOrder(testOrder)).thenReturn(orderItemsList);
 
-        mockMvc.perform(get("/api/order-items/order/1"))
+        mockMvc.perform(get("/api/order-items/order/1")) // Make sure this URL is correct
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].orderItems_id").value(1L))
                 .andExpect(jsonPath("$[0].product.name").value("Test Product"))
@@ -100,7 +103,7 @@ public class OrderItemsControllerTest {
 
         mockMvc.perform(put("/api/order-items/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"orderItems_id\":1,\"product\":{\"productId\":1,\"name\":\"Test Product\",\"price\":100.0},\"quantity\":10,\"price\":200.0}"))
+                        .content("{\"orderItems_id\":1,\"product\":{\"productId\":1,\"name\":\"Test Product\",\"price\":100.0},\"quantity\":10}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.quantity").value(10));
     }
@@ -115,7 +118,7 @@ public class OrderItemsControllerTest {
 
     @Test
     public void testDeleteOrderItem_NotFound() throws Exception {
-        when(orderItemsService.deleteOrderItem(1L)).thenReturn(false);
+        when(orderItemsService.deleteOrderItem(1L)).thenThrow(new NoSuchElementException("Order item not found with id: 1"));
 
         mockMvc.perform(delete("/api/order-items/1"))
                 .andExpect(status().isNotFound());

@@ -16,7 +16,7 @@ public class OrderItemsFactoryTest {
     public void testBuildOrderItems_ValidData() {
         Order order = new Order.Builder()
                 .setOrderId(1L)
-                .setUserId(new User())
+                .setUser(new User())
                 .setOrderDate(new Date())
                 .setStatus("Pending")
                 .setOrderItems(List.of())

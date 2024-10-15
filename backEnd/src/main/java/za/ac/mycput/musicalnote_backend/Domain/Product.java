@@ -36,10 +36,7 @@ public class Product implements Serializable {
 
     private String imageUrl;
 
-
-
     public Product(String guitar, float v, String s) {}
-
 
     public Product(Builder builder){
         this.productId = builder.productId;
@@ -50,12 +47,11 @@ public class Product implements Serializable {
         this.stock = builder.stock;
         this.orderItems = builder.orderItems;
         this.imageUrl= builder.imageUrl;
-
-
-
-
     }
 
+    public Product() {
+
+    }
 
     public Long getProductId() {
         return productId;
@@ -115,8 +111,8 @@ public class Product implements Serializable {
 
     public String getImageUrl() {
         return imageUrl;
-
     }
+
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
@@ -216,8 +212,6 @@ public class Product implements Serializable {
             return new Product(this);
 
         }
-
-
     }
 }
 

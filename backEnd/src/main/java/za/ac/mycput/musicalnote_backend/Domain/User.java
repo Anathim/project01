@@ -28,11 +28,11 @@ public class User implements Serializable {
     @Column(name = "Last Name", nullable = false)
     private String last_name;
 
-    @Column(name = "role", nullable = false)
+    @Column(name = "Role", nullable = false)
     private String role;
 
-    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Order> orders;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Order> orders = new HashSet<>();
 
     public User() {
     }
@@ -55,12 +55,9 @@ public class User implements Serializable {
         return userId;
     }
 
-
-
     public String getUsername() {
         return username;
     }
-
 
     public String getPassword() {
         return password;
@@ -81,6 +78,7 @@ public class User implements Serializable {
     public String getRole() {
         return role;
     }
+
     public Set<Order> getOrders() {
         return orders;
     }
@@ -93,8 +91,9 @@ public class User implements Serializable {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
     public void resetId() {
-        this.userId = null; // or any other logic to reset the ID
+        this.userId = null;
     }
 
     public void setUsername(String username) {
