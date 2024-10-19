@@ -12,6 +12,4 @@ import java.util.Optional;
 public interface OrderItemsRepository extends JpaRepository<OrderItems, Long> {
 
     List<OrderItems> findByOrder(Order order);
-
-    List<OrderItems> getAllOrderItemsByOrder(Long order);
 }
