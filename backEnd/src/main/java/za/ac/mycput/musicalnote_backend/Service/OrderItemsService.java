@@ -2,6 +2,7 @@ package za.ac.mycput.musicalnote_backend.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import za.ac.mycput.musicalnote_backend.Domain.Order;
 import za.ac.mycput.musicalnote_backend.Domain.OrderItems;
 import za.ac.mycput.musicalnote_backend.Repository.OrderItemsRepository;
 
@@ -11,10 +12,14 @@ import java.util.Optional;
 
 @Service
 public class OrderItemsService {
-
-    @Autowired
     private final OrderItemsRepository orderItemsRepository;
     private final UserService userService;
+
+    @Autowired
+    public OrderItemsService(OrderItemsRepository orderItemsRepository, UserService userService) {
+        this.orderItemsRepository = orderItemsRepository;
+        this.userService = userService;
+    }
 
     public OrderItems createOrderItem(OrderItems orderItem) {
         if (orderItem == null) {
@@ -23,33 +28,28 @@ public class OrderItemsService {
         return orderItemsRepository.save(orderItem);
     }
 
-    public OrderItemsService(OrderItemsRepository orderItemsRepository, UserService userService) {
-        this.orderItemsRepository = orderItemsRepository;
-        this.userService = userService;
+    public List<OrderItems> getAllOrderItemsByOrder(Order order) {
+        return orderItemsRepository.findByOrder(order);
     }
 
-    public List<OrderItems> getAllOrderItemsByOrderId(Long orderId) {
-        return orderItemsRepository.findByOrderId(orderId);
-    }
-
-
-    public OrderItems getByOrderId(Long orderId) {
-        return orderItemsRepository.findByOrderId(orderId).stream()
-                .findFirst() // Gets the first item from the list
-                .orElseThrow(() -> new RuntimeException("Order item not found with order id: " + orderId));
+    public OrderItems getByOrder(Order order) {
+        return orderItemsRepository.findByOrder(order).stream()
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Order item not found with order id: " + order));
     }
 
     public OrderItems addOrderItem(OrderItems orderItem) {
         return orderItemsRepository.save(orderItem);
     }
-    public OrderItems updateOrderItem(long l, OrderItems orderItem) {
-        OrderItems existingOrderItem = orderItemsRepository.findById(orderItem.getOrderItems_id())
-                .orElseThrow(() -> new RuntimeException("Order item not found with id: " + orderItem.getOrderItems_id()));
+
+    public OrderItems updateOrderItem(long id, OrderItems orderItem) {
+        OrderItems existingOrderItem = orderItemsRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order item not found with id: " + id));
 
         // Update fields accordingly
-        existingOrderItem.setOrder(orderItem.getOrder()); // Update based on the correct field names
-        existingOrderItem.setProduct(orderItem.getProduct()); // Assuming OrderItems has a Product field
-        existingOrderItem.setQuantity(orderItem.getQuantity()); // Assuming OrderItems has a Quantity field
+        existingOrderItem.setOrder(orderItem.getOrder());
+        existingOrderItem.setProduct(orderItem.getProduct());
+        existingOrderItem.setQuantity(orderItem.getQuantity());
 
         return orderItemsRepository.save(existingOrderItem);
     }
@@ -67,6 +67,9 @@ public class OrderItemsService {
     }
 
     public Boolean deleteOrderItem(Long id) {
+        if (!orderItemsRepository.existsById(id)) {
+            throw new RuntimeException("Order item not found with id: " + id);
+        }
         orderItemsRepository.deleteById(id);
         return true;
     }

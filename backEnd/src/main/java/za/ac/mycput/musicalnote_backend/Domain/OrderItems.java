@@ -41,8 +41,6 @@ public class OrderItems implements Serializable {
         this.cart = builder.cart;
         this.quantity = builder.quantity;
         this.price = builder.price;
-
-
     }
 
     public Long getOrderItems_id() {

@@ -9,9 +9,9 @@ import java.util.Date;
 import java.util.List;
 
 public class OrderFactory {
-    public static Order buildOrder(Long orderId, User userId, Date orderDate, String status, List<OrderItems> orderItems ) {
+    public static Order buildOrder(Long orderId, User user, Date orderDate, String status, List<OrderItems> orderItems ) {
         if(Helper.isNullOrEmpty(orderId) ||
-           Helper.isNullOrEmpty(userId) ||
+           Helper.isNullOrEmpty(user) ||
                    Helper.isNullOrEmpty(orderDate) ||
                    Helper.isNullOrEmpty(status) ||
                    Helper.isNullOrEmpty(orderItems)
@@ -19,7 +19,7 @@ public class OrderFactory {
 
         return new Order.Builder()
                 .setOrderId(orderId)
-                .setUserId(userId)
+                .setUser(user)
                 .setOrderDate(orderDate)
                 .setStatus(status)
                 .setOrderItems(orderItems)

@@ -30,7 +30,7 @@ public class OrderFactoryTest {
 
         assertNotNull(order, "Order should not be null");
         assertEquals(orderId, order.getOrderId(), "Order ID should match");
-        assertEquals(user, order.getUserId(), "User should match");
+        assertEquals(user, order.getUser(), "User should match");
         assertEquals(orderDate, order.getOrderDate(), "Order date should match");
         assertEquals(status, order.getStatus(), "Status should match");
         assertEquals(orderItems, order.getOrderItems(), "Order items should match");

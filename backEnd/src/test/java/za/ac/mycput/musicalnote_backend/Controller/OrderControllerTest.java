@@ -56,7 +56,7 @@ public class OrderControllerTest {
 
         testOrder = new Order();
         testOrder.setOrderId(1L);
-        testOrder.setUserId(testUser);
+        testOrder.setUser(testUser);
         testOrder.setOrderDate(new Date());
         testOrder.setStatus("Pending");
         testOrder.setOrderItems(new ArrayList<>(List.of(testOrderItem)));
@@ -103,7 +103,7 @@ public class OrderControllerTest {
 
         Order updatedOrder = new Order();
         updatedOrder.setOrderId(1L);
-        updatedOrder.setUserId(testUser);
+        updatedOrder.setUser(testUser);
         updatedOrder.setOrderDate(new Date());
         updatedOrder.setStatus("Shipped");
         updatedOrder.setOrderItems(new ArrayList<>(List.of(testOrderItem)));

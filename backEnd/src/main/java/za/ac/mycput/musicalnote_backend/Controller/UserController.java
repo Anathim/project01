@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origin = )
+@CrossOrigin(origins = "http://localhost:3306")
 public class UserController {
 
     private final UserService userService;
@@ -36,12 +36,31 @@ public class UserController {
         }
     }
 
+    @PostMapping("/register-admin")
+    public ResponseEntity<String> registerAdmin(@RequestBody User user, @RequestHeader("Authorization") String token) {
+        try {
+            // Check if the current user is an admin
+            User currentUser = userService.getCurrentUserFromToken(token);
+            if (!"admin".equals(currentUser.getRole())) {
+                return new ResponseEntity<>("Only admins can register other admins", HttpStatus.FORBIDDEN);
+            }
+
+            if (userService.registerAdmin(user)) {
+                return new ResponseEntity<>("Admin registered successfully", HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>("Admin registration failed", HttpStatus.BAD_REQUEST);
+            }
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping("/login")
     public ResponseEntity<String> loginUser(@RequestParam String username, @RequestParam String password) {
-        boolean isAuthenticated = userService.loginUser(username, password);
-        if (isAuthenticated) {
-            return new ResponseEntity<>("Login successful", HttpStatus.OK);
-        } else {
+        try {
+            String token = userService.authenticateUser(username, password);
+            return new ResponseEntity<>("Bearer " + token, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
         }
     }

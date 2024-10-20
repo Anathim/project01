@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import za.ac.mycput.musicalnote_backend.Domain.Order;
 import za.ac.mycput.musicalnote_backend.Domain.OrderItems;
 import za.ac.mycput.musicalnote_backend.Service.OrderItemsService;
+import za.ac.mycput.musicalnote_backend.Service.OrderService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -16,6 +18,9 @@ public class OrderItemsController {
 
     @Autowired
     private OrderItemsService orderItemsService;
+
+    @Autowired
+    private OrderService orderService;
 
     @PostMapping
     public ResponseEntity<OrderItems> createOrderItem(@RequestBody OrderItems orderItem) {
@@ -39,7 +44,11 @@ public class OrderItemsController {
 
     @GetMapping("/order/{orderId}")
     public ResponseEntity<List<OrderItems>> getAllOrderItemsByOrderId(@PathVariable Long orderId) {
-        List<OrderItems> orderItems = orderItemsService.getAllOrderItemsByOrderId(orderId);
+        Order order = orderService.getOrderById(orderId);
+        if (order == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        List<OrderItems> orderItems = orderItemsService.getAllOrderItemsByOrder(order);
         if (orderItems.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

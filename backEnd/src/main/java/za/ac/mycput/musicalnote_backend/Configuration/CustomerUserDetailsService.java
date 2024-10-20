@@ -1,12 +1,11 @@
 package za.ac.mycput.musicalnote_backend.Configuration;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import za.ac.mycput.musicalnote_backend.Domain.UserAuthentication;
 import za.ac.mycput.musicalnote_backend.Repository.UserRepository;
-
-import java.util.NoSuchElementException;
 
 @Service
 public class CustomerUserDetailsService implements UserDetailsService {
